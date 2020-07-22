@@ -1,0 +1,48 @@
+
+@RestContoller
+public class HelloController {
+@Autowired
+DictionaryService dictionaryservice;
+
+	@RequestMapping("/searchengine")
+	public String Dictionary(@RequestParam String word) {
+		return dictionaryservice.getSearchResult(word);
+	}
+
+}
+
+-------------------------------------------------------------------------------
+public Interface DictionaryService {
+
+public responsemodel getSearchResult(String word);
+
+}
+
+-----------------------------------------------------------------------------
+@Service
+public class DictionaryServiceImpl implements DictionaryService{
+
+@Autowired 
+DictionaryRepository dictionaryRepository;
+
+Responsemodel rs=new ResponseModel();
+@override
+public responsemodel getSearchResult(String word){
+List<object[]> resultList=dictionaryRepository.getResult(word);
+rs.setResponseModel(resultList);return rs;
+}
+
+}
+
+---------------------------------------------------------------------------------
+public interface DictionaryRepository extends JpaRepository<User, String> {
+
+@Query
+("select name from userEntity where username like '%?1%'");
+List<Object[]> getResult(String word);
+
+}
+
+---------------------------------------------------------------------------------------
+
+
