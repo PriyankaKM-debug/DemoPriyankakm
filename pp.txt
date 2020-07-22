@@ -1,0 +1,19 @@
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.stream.Stream;
+
+public class SearchPgm {
+public static void Main(String args[]) {
+Set<String> slList = new LinkedHashSet<String>();
+slList.add("Priyanka");
+slList.add("Renuka");
+slList.add("Radhika");
+slList.add("Sonika");
+//Predicate<StudentClass1> p1=slList.stream().allMatch(ls1->slList.contains("ka"));
+//s1list->s2List.stream().anyMatch(ls2->s1list.getRollNumber()==slList.contains("ka"))).collect(Collectors.toList());
+  Stream<String> Names  = slList.stream().filter(slList->slList.contains("ka"));
+
+Names.forEach(str->System.out.print(str+" "));
+
+}
+}
